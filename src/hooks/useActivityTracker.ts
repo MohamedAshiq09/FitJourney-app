@@ -1,18 +1,19 @@
+"use client";
+
 import { useState } from 'react';
 import { Activity } from '@/types/Activity'; 
 
 export const useActivityTracker = () => {
     const [activityData, setActivityData] = useState<Activity[]>([]);
   
-    const addActivity = (type: string, duration: number) => {
+    const addActivity = (name: string, duration: number) => {
       const newActivity: Activity = {
-        id: new Date().toISOString(), // Using ISO string for unique ID
-        type,                        // Activity type (e.g., "Running")
-        duration,                    // Activity duration in minutes
-        date: new Date().toLocaleDateString(), // Current date as a string
+        id: Date.now(),  // Generate a unique ID for each activity
+        type: name,
+        duration,
+        date: new Date().toLocaleDateString(),  // Use the current date
       };
-  
-      setActivityData((prevData) => [...prevData, newActivity]);
+      setActivityData([...activityData, newActivity]);  // Add new activity to the list
     };
   
     return { activityData, addActivity };

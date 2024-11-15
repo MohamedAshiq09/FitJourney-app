@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { useActivityTracker } from "../hooks/useActivityTracker"; 
 
 export default function Home() {
+  // Destructure activityData and addActivity from the custom hook
   const { activityData, addActivity } = useActivityTracker();
 
   return (
@@ -20,9 +21,9 @@ export default function Home() {
         {/* Displaying the list of activities */}
         <ul className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           {activityData.length > 0 ? (
-            activityData.map((activity, index) => (
-              <li key={index} className="mb-2">
-                {activity.type}: {activity.duration} minutes
+            activityData.map((activity) => (
+              <li key={activity.id} className="mb-2">
+                {activity.date} - {activity.type} for {activity.duration} minutes
               </li>
             ))
           ) : (

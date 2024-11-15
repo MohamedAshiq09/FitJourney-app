@@ -1,7 +1,7 @@
 export type ActivityType = "Running" | "Cycling" | "Swimming";
 
 export interface Activity {
-  id: string;        
+  id: number;        
   type: string;      
   duration: number;  
   date: string;
