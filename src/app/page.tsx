@@ -21,7 +21,7 @@ export default function Dashboard() {
           {["Home", "Calendar", "Statistics", "Settings"].map((label, i) => (
             label === "Settings" ? (
               // Wrap the "Settings" button with a Link component
-              <Link href="/settings" key={i}>
+              <Link href="app/settings/page.tsx" key={i}>
                 <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
                   {icons[i]} {label}
                 </button>
