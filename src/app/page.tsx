@@ -1,12 +1,15 @@
 "use client";
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useActivityTracker } from "../hooks/useActivityTracker"; 
+import { FaHome, FaCalendarAlt, FaChartLine, FaCog, FaRunning } from 'react-icons/fa';
 
 export default function Dashboard() {
   const { activityData, addActivity } = useActivityTracker();
   const [activeDay, setActiveDay] = useState(new Date().getDate());
+  const icons = [<FaHome />, <FaCalendarAlt />, <FaChartLine />, <FaCog />];
 
   return (
     <div className="min-h-screen p-8 pb-20 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 bg-[#1a1a1a] text-white font-sans">
@@ -15,11 +18,19 @@ export default function Dashboard() {
         <div className="text-2xl font-semibold">Hello, Alex!</div>
         <p>Ready for today's challenge?</p>
         <nav className="flex flex-col gap-4 mt-8">
-          {/* Sidebar icons */}
           {["Home", "Calendar", "Statistics", "Settings"].map((label, i) => (
-            <button key={i} className="p-3 hover:bg-[#383838] rounded-full">
-              {label}
-            </button>
+            label === "Settings" ? (
+              // Wrap the "Settings" button with a Link component
+              <Link href="/settings" key={i}>
+                <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
+                  {icons[i]} {label}
+                </button>
+              </Link>
+            ) : (
+              <button key={i} className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
+                {icons[i]} {label}
+              </button>
+            )
           ))}
         </nav>
       </aside>
@@ -45,6 +56,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
+
           {/* Calendar Section */}
           <div className="bg-[#2b2b2b] rounded-lg p-6 w-64">
             <h2 className="text-xl mb-4">Your Active Days</h2>
@@ -53,9 +65,7 @@ export default function Dashboard() {
                 <button
                   key={i + 1}
                   onClick={() => setActiveDay(i + 1)}
-                  className={`p-2 rounded-full ${
-                    i + 1 === activeDay ? "bg-blue-500" : "bg-[#383838]"
-                  }`}
+                  className={`p-2 rounded-full ${i + 1 === activeDay ? "bg-blue-500" : "bg-[#383838]"}`}
                 >
                   {i + 1}
                 </button>
@@ -77,7 +87,7 @@ export default function Dashboard() {
             <h2 className="text-xl mb-4">Weight Loss Plan</h2>
             <p>80% completed</p>
             <div className="w-full bg-[#383838] rounded-full h-4 mt-4">
-              <div className="bg-green-500 h-4 rounded-full" style={{ width: '80%' }}></div>
+              <div className="bg-green-500 h-4 rounded-full transition-all" style={{ width: '80%' }}></div>
             </div>
             <p className="mt-2">80kg <span className="float-right">70kg</span></p>
           </div>
