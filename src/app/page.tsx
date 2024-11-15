@@ -20,8 +20,8 @@ export default function Dashboard() {
         <nav className="flex flex-col gap-4 mt-8">
           {["Home", "Calendar", "Statistics", "Settings"].map((label, i) => (
             label === "Settings" ? (
-              // Wrap the "Settings" button with a Link component
-              <Link href="app/settings/page.tsx" key={i}>
+              // Use Link for "Settings" to navigate to /settings
+              <Link href="/settings" key={i}>
                 <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
                   {icons[i]} {label}
                 </button>
