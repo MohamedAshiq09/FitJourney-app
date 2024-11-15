@@ -1,74 +1,110 @@
 "use client";
 
 import Image from 'next/image';
+import { useState } from 'react';
 import { useActivityTracker } from "../hooks/useActivityTracker"; 
 
-export default function Home() {
-  // Destructure activityData and addActivity from the custom hook
+export default function Dashboard() {
   const { activityData, addActivity } = useActivityTracker();
+  const [activeDay, setActiveDay] = useState(new Date().getDate());
 
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <h1 className="text-2xl font-semibold">Activity Tracker</h1>
+    <div className="min-h-screen p-8 pb-20 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 bg-[#1a1a1a] text-white font-sans">
+      {/* Sidebar */}
+      <aside className="flex flex-col gap-6 items-center lg:items-start p-4 bg-[#2b2b2b] rounded-lg">
+        <div className="text-2xl font-semibold">Hello, Alex!</div>
+        <p>Ready for today's challenge?</p>
+        <nav className="flex flex-col gap-4 mt-8">
+          {/* Sidebar icons */}
+          {["Home", "Calendar", "Statistics", "Settings"].map((label, i) => (
+            <button key={i} className="p-3 hover:bg-[#383838] rounded-full">
+              {label}
+            </button>
+          ))}
+        </nav>
+      </aside>
 
-        {/* Button to add activity */}
-        <button
-          onClick={() => addActivity("Running", 30)} // Example activity: Running for 30 minutes
-          className="rounded-full border bg-blue-500 text-white py-2 px-4 mb-4 hover:bg-blue-700 transition"
-        >
-          Add Running Activity (30 minutes)
-        </button>
+      {/* Main content */}
+      <main className="flex flex-col gap-8">
+        {/* Physical Activity Section */}
+        <section className="flex gap-8">
+          <div className="bg-[#2b2b2b] rounded-lg p-6 flex-1">
+            <h2 className="text-xl mb-4">Physical Activity</h2>
+            <div className="flex justify-between">
+              <div>
+                <p>Steps</p>
+                <p className="text-2xl font-bold">8,745</p>
+              </div>
+              <div>
+                <p>Calories burned</p>
+                <p className="text-2xl font-bold">700</p>
+              </div>
+              <div>
+                <p>Activity time</p>
+                <p className="text-2xl font-bold">2h 45min</p>
+              </div>
+            </div>
+          </div>
+          {/* Calendar Section */}
+          <div className="bg-[#2b2b2b] rounded-lg p-6 w-64">
+            <h2 className="text-xl mb-4">Your Active Days</h2>
+            <div className="grid grid-cols-7 gap-2 text-center">
+              {Array.from({ length: 30 }, (_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={() => setActiveDay(i + 1)}
+                  className={`p-2 rounded-full ${
+                    i + 1 === activeDay ? "bg-blue-500" : "bg-[#383838]"
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
 
-        {/* Displaying the list of activities */}
-        <ul className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          {activityData.length > 0 ? (
-            activityData.map((activity) => (
-              <li key={activity.id} className="mb-2">
-                {activity.date} - {activity.type} for {activity.duration} minutes
-              </li>
-            ))
-          ) : (
-            <li>No activities yet. Start adding some!</li>
-          )}
-        </ul>
+        {/* Sleep Time and Weight Loss Plan */}
+        <section className="flex gap-8">
+          <div className="bg-[#2b2b2b] rounded-lg p-6 w-1/2">
+            <h2 className="text-xl mb-4">Sleep Time</h2>
+            <p>You're almost there</p>
+            <div className="relative w-24 h-24 mt-4 rounded-full border-4 border-green-500 flex items-center justify-center">
+              <span className="text-xl">7.45h</span>
+            </div>
+          </div>
+          <div className="bg-[#2b2b2b] rounded-lg p-6 w-1/2">
+            <h2 className="text-xl mb-4">Weight Loss Plan</h2>
+            <p>80% completed</p>
+            <div className="w-full bg-[#383838] rounded-full h-4 mt-4">
+              <div className="bg-green-500 h-4 rounded-full" style={{ width: '80%' }}></div>
+            </div>
+            <p className="mt-2">80kg <span className="float-right">70kg</span></p>
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          {/* Example links */}
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        {/* Planned Activities */}
+        <section className="bg-[#2b2b2b] rounded-lg p-6">
+          <h2 className="text-xl mb-4">My Activities</h2>
+          <button
+            onClick={() => addActivity("Running", 30)}
+            className="rounded-full bg-blue-500 text-white py-2 px-4 mb-4 hover:bg-blue-700 transition"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-        </div>
+            Add Running Activity (30 minutes)
+          </button>
+          <ul className="list-inside list-decimal text-sm font-mono">
+            {activityData.length > 0 ? (
+              activityData.map((activity) => (
+                <li key={activity.id} className="mb-2">
+                  {activity.date} - {activity.type} for {activity.duration} minutes
+                </li>
+              ))
+            ) : (
+              <li>No activities yet. Start adding some!</li>
+            )}
+          </ul>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-      </footer>
     </div>
   );
 }
