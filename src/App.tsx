@@ -6,7 +6,7 @@ import ProgressChart from './components/ProgressChart';
 import Layout from './components/Layout';
 
 const App: React.FC = () => {
-  const { activityData, addActivity } = useActivityTracker();  // Updated to use 'activityData'
+  const { activityData, addActivity } = useActivityTracker();  
 
   return (
     <Layout>

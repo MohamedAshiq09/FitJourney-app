@@ -1,4 +1,3 @@
-// src/components/ActivityForm.tsx
 import { useState } from 'react';
 import { ActivityType } from '@/types/Activity';
 
