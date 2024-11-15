@@ -18,20 +18,25 @@ export default function Dashboard() {
         <div className="text-2xl font-semibold">Hello, Alex!</div>
         <p>Ready for today's challenge?</p>
         <nav className="flex flex-col gap-4 mt-8">
-          {["Home", "Calendar", "Statistics", "Settings"].map((label, i) => (
-            label === "Settings" ? (
-              // Use Link for "Settings" to navigate to /settings
-              <Link href="/settings" key={i}>
-                <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
-                  {icons[i]} {label}
-                </button>
-              </Link>
-            ) : (
-              <button key={i} className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
-                {icons[i]} {label}
-              </button>
-            )
+          {["Home", "Calendar"].map((label, i) => (
+            <button key={i} className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
+              {icons[i]} {label}
+            </button>
           ))}
+          
+          {/* Link for Statistics */}
+          <Link href="/statistics">
+            <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
+              <FaChartLine /> Statistics
+            </button>
+          </Link>
+
+          {/* Link for Settings */}
+          <Link href="/settings">
+            <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
+              <FaCog /> Settings
+            </button>
+          </Link>
         </nav>
       </aside>
 
