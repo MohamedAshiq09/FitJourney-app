@@ -5,8 +5,8 @@ const Statistics = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-8">
       <div className="flex gap-8">
         {/* Weekly Statistics Section */}
-        <div className="bg-white shadow-md rounded-lg p-6 w-96">
-          <h2 className="text-xl font-semibold mb-4">Weekly Statistics</h2>
+        <div className="bg-white shadow-md rounded-lg p-40 w-110">
+          <h2 className="text-4xl font-semibold mb-9">Weekly Statistics</h2>
           <p className="text-gray-700 mb-6">
             <span role="img" aria-label="rocket">🚀</span> This week, you improved <strong>focus</strong> by <strong>15%</strong> and completed <strong>10 tasks</strong> across 3 projects.
           </p>
