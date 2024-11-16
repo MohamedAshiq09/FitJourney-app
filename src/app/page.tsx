@@ -23,6 +23,12 @@ export default function Dashboard() {
               {icons[i]} {label}
             </button>
           ))}
+
+          <Link href="/calender">
+            <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
+              <FaCalendarAlt /> Calender
+            </button>
+          </Link>
           
           {/* Link for Statistics */}
           <Link href="/statistics">
@@ -31,6 +37,8 @@ export default function Dashboard() {
             </button>
           </Link>
 
+        
+
           {/* Link for Settings */}
           <Link href="/settings">
             <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
@@ -38,11 +46,7 @@ export default function Dashboard() {
             </button>
           </Link>
 
-          <Link href="/calender">
-            <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
-              <FaCog /> Calender
-            </button>
-          </Link>
+          
         </nav>
       </aside>
 
