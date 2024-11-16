@@ -8,12 +8,12 @@ export const useActivityTracker = () => {
   
     const addActivity = (name: string, duration: number) => {
       const newActivity: Activity = {
-        id: Date.now(),  // Generate a unique ID for each activity
+        id: Date.now(),  
         type: name,
         duration,
-        date: new Date().toLocaleDateString(),  // Use the current date
+        date: new Date().toLocaleDateString(),  
       };
-      setActivityData([...activityData, newActivity]);  // Add new activity to the list
+      setActivityData([...activityData, newActivity]);  
     };
   
     return { activityData, addActivity };
