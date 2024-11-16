@@ -63,14 +63,16 @@ export default function Dashboard() {
           </div>
 
           {/* Calendar Section */}
-          <div className="bg-[#2b2b2b] rounded-lg p-6 w-64">
+          <div className="bg-[#2b2b2b] rounded-lg p-6 w-90">
             <h2 className="text-xl mb-4">Your Active Days</h2>
-            <div className="grid grid-cols-7 gap-2 text-center">
+            <div className="grid grid-cols-7 gap-4 text-center">
               {Array.from({ length: 30 }, (_, i) => (
                 <button
                   key={i + 1}
                   onClick={() => setActiveDay(i + 1)}
-                  className={`p-2 rounded-full ${i + 1 === activeDay ? "bg-blue-500" : "bg-[#383838]"}`}
+                  className={`w-12 h-12 flex items-center justify-center text-center text-white text-base font-medium rounded-full ${
+                    i + 1 === activeDay ? "bg-blue-500" : "bg-[#383838]"
+                  }`}
                 >
                   {i + 1}
                 </button>
