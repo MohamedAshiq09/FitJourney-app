@@ -18,7 +18,7 @@ export default function Dashboard() {
         <div className="text-2xl font-semibold">Hello, Alex!</div>
         <p>Ready for today's challenge?</p>
         <nav className="flex flex-col gap-4 mt-8">
-          {["Home", "Calendar"].map((label, i) => (
+          {["Home"].map((label, i) => (
             <button key={i} className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
               {icons[i]} {label}
             </button>
@@ -35,6 +35,12 @@ export default function Dashboard() {
           <Link href="/settings">
             <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
               <FaCog /> Settings
+            </button>
+          </Link>
+
+          <Link href="/calender">
+            <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
+              <FaCog /> Calender
             </button>
           </Link>
         </nav>
