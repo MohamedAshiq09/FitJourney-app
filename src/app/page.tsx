@@ -154,7 +154,7 @@ export default function Dashboard() {
     <div className="min-h-screen p-8 pb-20 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 bg-[#1a1a1a] text-white font-sans">
       {/* Sidebar */}
       <aside
-         className={`flex flex-col gap-6 items-center lg:items-start p-4 bg-[#2b2b2b] rounded-lg transition-all ${isSidebarOpen ? "w-55" : "w-16"} duration-500`}
+         className={`flex flex-col gap-6 items-center lg:items-start p-4 bg-[#2b2b2b] rounded-lg transition-all ${isSidebarOpen ? "w-55" : "w-16"} duration-1000`}
         onMouseEnter={() => setIsSidebarOpen(true)}
         onMouseLeave={() => setIsSidebarOpen(false)}
         onClick={() => setIsSidebarOpen((prev) => !prev)}
