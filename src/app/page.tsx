@@ -178,7 +178,7 @@ export default function Dashboard() {
 
           <Link href="/calender">
             <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
-              <FaCalendarAlt />
+              <FaCalendarAlt size={24}/>
               {isSidebarOpen && <span>Calendar</span>}
             </button>
           </Link>
@@ -186,7 +186,7 @@ export default function Dashboard() {
           {/* Link for Statistics */}
           <Link href="/statistics">
             <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
-              <FaChartLine />
+              <FaChartLine size={24} />
               {isSidebarOpen && <span>Statistics</span>}
             </button>
           </Link>
@@ -194,10 +194,11 @@ export default function Dashboard() {
           {/* Link for Settings */}
           <Link href="/settings">
             <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
-              <FaCog />
+              <FaCog size={24}/>
               {isSidebarOpen && <span>Settings</span>}
             </button>
           </Link>
+
         </nav>
       </aside>
 
