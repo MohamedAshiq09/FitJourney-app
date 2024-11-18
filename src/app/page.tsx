@@ -155,13 +155,13 @@ export default function Dashboard() {
       {/* Sidebar */}
       <aside
         className={`flex flex-col gap-6 items-center lg:items-start p-4 bg-[#2b2b2b] rounded-lg transition-all duration-300 ${
-          isSidebarOpen ? "w-64" : "w-16"
+          isSidebarOpen ? "w-55" : "w-16"
         }`}
         onMouseEnter={() => setIsSidebarOpen(true)}
         onMouseLeave={() => setIsSidebarOpen(false)}
         onClick={() => setIsSidebarOpen((prev) => !prev)}
       >
-        <div className={`${isSidebarOpen ? "block" : "hidden"} text-2xl font-semibold`}>
+        <div className={`${isSidebarOpen ? "block" : "hidden"} text-3xl font-semibold`}>
           Hello, Alex!
         </div>
         <p className={`${isSidebarOpen ? "block" : "hidden"}`}>Ready for today's challenge?</p>
