@@ -11,8 +11,11 @@ export default function Dashboard() {
   const [activeDay, setActiveDay] = useState(new Date().getDate());
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const icons = [<FaHome size={24}/>, <FaCalendarAlt />, <FaChartLine />, <FaCog />];
+  
+  
 
   return (
+    
     <div className="min-h-screen p-8 pb-20 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 bg-[#1a1a1a] text-white font-sans">
       {/* Sidebar */}
       <aside
