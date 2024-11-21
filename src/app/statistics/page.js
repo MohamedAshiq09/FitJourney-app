@@ -114,19 +114,33 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-// Register the required Chart.js components
+// Register components for Chart.js
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 // Chart data
 const data = {
-  labels: ['January', 'February', 'March', 'April', 'May'],
+  labels: ['Steps', 'Calories', 'Distance', 'Workouts', 'Sleep'],
   datasets: [
     {
-      label: 'Sales',
-      data: [30, 45, 60, 75, 90],
-      backgroundColor: 'rgba(75, 192, 192, 0.6)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
+      label: 'Daily Stats',
+      data: [5000, 350, 7.5, 3, 8],
+      backgroundColor: [
+        'rgba(255, 99, 132, 0.6)',
+        'rgba(54, 162, 235, 0.6)',
+        'rgba(255, 206, 86, 0.6)',
+        'rgba(75, 192, 192, 0.6)',
+        'rgba(153, 102, 255, 0.6)',
+      ],
+      borderColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+      ],
+      borderWidth: 2,
+      hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)', // Change color on hover
+      hoverBorderColor: 'rgba(0, 0, 0, 1)',
     },
   ],
 };
@@ -135,39 +149,92 @@ const data = {
 const options = {
   responsive: true,
   plugins: {
+    legend: {
+      display: true,
+      position: 'top',
+      labels: {
+        font: {
+          size: 14,
+          family: 'Arial',
+        },
+        color: '#333',
+        boxWidth: 20,
+      },
+    },
     title: {
       display: true,
-      text: 'Monthly Sales Data',
-    },
-    legend: {
-      position: 'top',
+      text: 'Activity Tracker - Daily Statistics',
+      font: {
+        size: 18,
+        weight: 'bold',
+        family: 'Arial',
+      },
+      color: '#111',
     },
     tooltip: {
       enabled: true,
+      backgroundColor: 'rgba(0,0,0,0.8)',
+      titleColor: '#fff',
+      bodyColor: '#eee',
+      borderColor: '#fff',
+      borderWidth: 1,
     },
+  },
+  animation: {
+    duration: 2000, // Animation duration in ms
+    easing: 'easeOutBounce', // Smooth bounce effect
   },
   scales: {
     x: {
-      type: 'category', // Explicitly define the x-axis scale type
-      title: {
-        display: true,
-        text: 'Months',
+      grid: {
+        color: 'rgba(200, 200, 200, 0.2)',
+        borderDash: [5, 5],
+      },
+      ticks: {
+        color: '#666',
+        font: {
+          size: 12,
+          family: 'Arial',
+        },
       },
     },
     y: {
       beginAtZero: true,
-      title: {
-        display: true,
-        text: 'Sales (in USD)',
+      grid: {
+        color: 'rgba(200, 200, 200, 0.2)',
+        borderDash: [5, 5],
+      },
+      ticks: {
+        color: '#666',
+        font: {
+          size: 12,
+          family: 'Arial',
+        },
+        callback: function (value) {
+          return value + ' units'; // Add 'units' to y-axis ticks
+        },
       },
     },
   },
+  hover: {
+    mode: 'nearest',
+    intersect: true,
+  },
 };
 
-// React component
+// Component
 const BarChart = () => {
   return (
-    <div style={{ width: '80%', margin: 'auto', padding: '20px' }}>
+    <div
+      style={{
+        width: '90%',
+        margin: '20px auto',
+        padding: '20px',
+        backgroundColor: '#f9f9f9',
+        borderRadius: '15px',
+        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+      }}
+    >
       <Bar data={data} options={options} />
     </div>
   );
