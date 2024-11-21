@@ -1,4 +1,4 @@
-/* General Styling */
+
 body {
     margin: 0;
     font-family: "Arial", sans-serif;
@@ -15,7 +15,7 @@ body {
     box-sizing: border-box;
   }
   
-  /* Chat Section */
+
   .chat-section {
     background: #fff;
     padding: 15px;
@@ -83,7 +83,7 @@ body {
     background: #45a049;
   }
   
-  /* Content Section */
+
   .content-section {
     background: #fff;
     padding: 15px;
@@ -101,7 +101,7 @@ body {
   .feed-filters {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 50px;
   }
   
   .feed {
