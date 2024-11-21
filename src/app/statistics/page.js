@@ -116,7 +116,7 @@ const Dashboard = () => {
   const [newMessage, setNewMessage] = useState("");
 
   const chartData = {
-    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+    labels: ["W1", "W2", "W3", "W4"],
     datasets: [
       {
         label: "Exercise",
@@ -125,7 +125,7 @@ const Dashboard = () => {
         backgroundColor: "rgba(76, 175, 80, 0.2)",
         tension: 0.4,
         fill: true,
-        pointRadius: 5,
+        pointRadius: 3,
       },
     ],
   };
@@ -133,10 +133,10 @@ const Dashboard = () => {
   const [filter, setFilter] = useState("All");
 
   const feedItems = [
-    { id: 1, type: "Exercise", text: "Completed 10 push-ups.", time: "2 hours ago" },
-    { id: 2, type: "Meal", text: "Had a healthy salad with chicken.", time: "5 hours ago" },
-    { id: 3, type: "Achievement", text: "Reached 7,000 steps today!", time: "1 day ago" },
-    { id: 4, type: "Sleep", text: "Slept for 8 hours.", time: "1 day ago" },
+    { id: 1, type: "Exercise", text: "10 push-ups completed", time: "2 hrs ago" },
+    { id: 2, type: "Meal", text: "Healthy salad with chicken", time: "5 hrs ago" },
+    { id: 3, type: "Achievement", text: "7,000 steps reached!", time: "1 day ago" },
+    { id: 4, type: "Sleep", text: "8 hours of sleep", time: "1 day ago" },
   ];
 
   const filteredFeed = feedItems.filter((item) =>
@@ -167,7 +167,7 @@ const Dashboard = () => {
             type="text"
             value={newMessage}
             onChange={(e) => setNewMessage(e.target.value)}
-            placeholder="Type a message..."
+            placeholder="Type..."
           />
           <button onClick={handleSend}>Send</button>
         </div>
@@ -175,12 +175,6 @@ const Dashboard = () => {
 
       {/* Content Section */}
       <div className="content-section">
-        {/* Header */}
-        <header className="dashboard-header">
-          <h1>Fitness Dashboard</h1>
-          <p>Track your progress and stay on top of your goals.</p>
-        </header>
-
         {/* Progress Chart */}
         <div className="progress-chart">
           <h2>Weekly Progress</h2>
