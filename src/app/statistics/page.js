@@ -151,8 +151,8 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard-grid">
-      {/* Left Chat Section */}
+    <div className="dashboard-container">
+      {/* Chat Section */}
       <div className="chat-section">
         <h2>Chat</h2>
         <div className="chat-box">
@@ -173,26 +173,21 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Right Content Section */}
+      {/* Content Section */}
       <div className="content-section">
         {/* Header */}
         <header className="dashboard-header">
-          <h1>Fitness Feed</h1>
-          <p>Track your daily progress and updates.</p>
+          <h1>Fitness Dashboard</h1>
+          <p>Track your progress and stay on top of your goals.</p>
         </header>
 
         {/* Progress Chart */}
-        <motion.div
-          className="progress-chart"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="progress-chart">
           <h2>Weekly Progress</h2>
           <Line data={chartData} />
-        </motion.div>
+        </div>
 
-        {/* Filters */}
+        {/* Feed Filters */}
         <div className="feed-filters">
           {["All", "Exercise", "Meal", "Achievement", "Sleep"].map((category) => (
             <motion.button
@@ -207,19 +202,7 @@ const Dashboard = () => {
         </div>
 
         {/* Feed Section */}
-        <motion.div
-          className="feed"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: { staggerChildren: 0.2 },
-            },
-          }}
-        >
+        <div className="feed">
           {filteredFeed.map((item) => (
             <motion.div
               className="feed-item"
@@ -232,7 +215,7 @@ const Dashboard = () => {
               <span>{item.time}</span>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </div>
   );
