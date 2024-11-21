@@ -100,111 +100,77 @@
 // );
 
 // export default Statistics;
-"use client";
+"use client"
 
 import React from 'react';
-import { Line } from 'react-chartjs-2';
-import { Doughnut } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-const Statistics = () => {
-  const lineData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-    datasets: [
-      {
-        label: 'New Users',
-        data: [200, 400, 300, 500, 700, 600, 800],
-        borderColor: '#4F46E5',
-        backgroundColor: 'rgba(79, 70, 229, 0.2)',
-        tension: 0.4,
-      },
-      {
-        label: 'Referrals',
-        data: [100, 300, 200, 400, 600, 500, 700],
-        borderColor: '#F97316',
-        backgroundColor: 'rgba(249, 115, 22, 0.2)',
-        tension: 0.4,
-      },
-    ],
-  };
+// Register the required Chart.js components
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-  const doughnutData = {
-    labels: ['Standard', 'Big', 'Luxury'],
-    datasets: [
-      {
-        label: 'Car Categories',
-        data: [60, 25, 15],
-        backgroundColor: ['#4F46E5', '#10B981', '#F97316'],
-        hoverOffset: 4,
-      },
-    ],
-  };
+// Chart data
+const data = {
+  labels: ['January', 'February', 'March', 'April', 'May'],
+  datasets: [
+    {
+      label: 'Sales',
+      data: [30, 45, 60, 75, 90],
+      backgroundColor: 'rgba(75, 192, 192, 0.6)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1,
+    },
+  ],
+};
 
-  const barData = {
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-    datasets: [
-      {
-        label: 'Completed',
-        data: [150, 200, 250, 300, 350, 400, 450],
-        backgroundColor: '#4F46E5',
+// Chart options
+const options = {
+  responsive: true,
+  plugins: {
+    title: {
+      display: true,
+      text: 'Monthly Sales Data',
+    },
+    legend: {
+      position: 'top',
+    },
+    tooltip: {
+      enabled: true,
+    },
+  },
+  scales: {
+    x: {
+      type: 'category', // Explicitly define the x-axis scale type
+      title: {
+        display: true,
+        text: 'Months',
       },
-      {
-        label: 'Cancelled',
-        data: [50, 70, 60, 80, 90, 100, 120],
-        backgroundColor: '#F97316',
+    },
+    y: {
+      beginAtZero: true,
+      title: {
+        display: true,
+        text: 'Sales (in USD)',
       },
-    ],
-  };
+    },
+  },
+};
 
+// React component
+const BarChart = () => {
   return (
-    <div className="bg-gray-100 min-h-screen p-6">
-      <header className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">Statistics</h1>
-        <div className="flex items-center space-x-4">
-          <span>Marla Fehner</span>
-          <img
-            src="https://via.placeholder.com/40"
-            alt="User Avatar"
-            className="w-10 h-10 rounded-full"
-          />
-        </div>
-      </header>
-
-      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Summary Cards */}
-        <div className="bg-white p-4 shadow rounded-lg">
-          <h2 className="text-lg font-bold">Total Revenue</h2>
-          <p className="text-2xl font-semibold">$305,709</p>
-        </div>
-        <div className="bg-white p-4 shadow rounded-lg">
-          <h2 className="text-lg font-bold">Total Rides</h2>
-          <p className="text-2xl font-semibold">165,789</p>
-        </div>
-        <div className="bg-white p-4 shadow rounded-lg">
-          <h2 className="text-lg font-bold">Total Drivers</h2>
-          <p className="text-2xl font-semibold">14,683</p>
-        </div>
-
-        {/* Line Chart */}
-        <div className="col-span-1 md:col-span-2 lg:col-span-4 bg-white p-4 shadow rounded-lg">
-          <h2 className="text-lg font-bold mb-4">New Users</h2>
-          <Line data={lineData} />
-        </div>
-
-        {/* Doughnut Chart */}
-        <div className="bg-white p-4 shadow rounded-lg">
-          <h2 className="text-lg font-bold mb-4">Car Categories</h2>
-          <Doughnut data={doughnutData} />
-        </div>
-
-        {/* Bar Chart */}
-        <div className="col-span-1 md:col-span-2 lg:col-span-2 bg-white p-4 shadow rounded-lg">
-          <h2 className="text-lg font-bold mb-4">Rides</h2>
-          <Bar data={barData} />
-        </div>
-      </main>
+    <div style={{ width: '80%', margin: 'auto', padding: '20px' }}>
+      <Bar data={data} options={options} />
     </div>
   );
 };
 
-export default Statistics;
+export default BarChart;
