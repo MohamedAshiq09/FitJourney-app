@@ -12,7 +12,7 @@ export default function Settings() {
       <div className="max-w-3xl mx-auto">
         <h1 className="text-3xl font-semibold mb-6">Settings</h1>
 
-        {/* Profile Settings */}
+       
         <section className="bg-[#2b2b2b] p-6 rounded-lg mb-6">
           <h2 className="text-xl mb-4 flex items-center gap-2">
             <FaUser /> Profile Settings
@@ -37,7 +37,7 @@ export default function Settings() {
           </div>
         </section>
 
-        {/* Notification Settings */}
+        
         <section className="bg-[#2b2b2b] p-6 rounded-lg mb-6">
           <h2 className="text-xl mb-4 flex items-center gap-2">
             <FaBell /> Notification Settings
@@ -53,7 +53,7 @@ export default function Settings() {
           </div>
         </section>
 
-        {/* Theme Settings */}
+        
         <section className="bg-[#2b2b2b] p-6 rounded-lg mb-6">
           <h2 className="text-xl mb-4 flex items-center gap-2">
             <FaMoon /> Theme Settings
@@ -69,7 +69,7 @@ export default function Settings() {
           </div>
         </section>
 
-        {/* Account Management */}
+        
         <section className="bg-[#2b2b2b] p-6 rounded-lg mb-6">
           <h2 className="text-xl mb-4 flex items-center gap-2">
             <FaLock /> Account Management
@@ -84,7 +84,7 @@ export default function Settings() {
           </div>
         </section>
 
-        {/* Logout Button */}
+        
         <div className="text-center mt-8">
           <button className="bg-red-600 text-white py-2 px-6 rounded-lg flex items-center gap-2 hover:bg-red-800 transition">
             <FaSignOutAlt /> Logout

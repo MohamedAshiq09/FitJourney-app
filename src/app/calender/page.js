@@ -19,12 +19,12 @@ const ActivityCalendar = () => {
 
   return (
     <div className="bg-white shadow-lg rounded-xl p-6 max-w-6xl mx-auto">
-      {/* Header */}
+      
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold text-gray-800">Activity Calendar</h2>
       </div>
 
-      {/* Calendar */}
+      
       <div className="rounded-lg bg-gray-50 p-4">
         <FullCalendar
           ref={calendarRef}
@@ -51,7 +51,7 @@ const ActivityCalendar = () => {
         />
       </div>
 
-      {/* Footer */}
+      
       <div className="mt-6 text-center text-gray-600">
         <p className="text-sm">Interactive calendar with detailed weekly views!</p>
       </div>

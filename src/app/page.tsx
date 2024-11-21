@@ -17,7 +17,7 @@ export default function Dashboard() {
   return (
     
     <div className="min-h-screen p-8 pb-20 grid grid-cols-1 lg:grid-cols-[200px_1fr] gap-8 bg-[#1a1a1a] text-white font-sans">
-      {/* Sidebar */}
+      
       <aside
         className={`flex flex-col gap-6 items-center lg:items-start p-4 bg-[#2b2b2b] rounded-lg transition-width duration-[20000s] ease-in-out ${isSidebarOpen ? "w-55" : "w-16"}`}
         onMouseEnter={() => setIsSidebarOpen(true)}
@@ -46,7 +46,7 @@ export default function Dashboard() {
             </button>
           </Link>
 
-          {/* Link for Statistics */}
+           
           <Link href="/statistics">
             <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
               <FaChartLine size={24} />
@@ -54,7 +54,7 @@ export default function Dashboard() {
             </button>
           </Link>
 
-          {/* Link for Settings */}
+           
           <Link href="/settings">
             <button className="flex items-center gap-2 p-3 hover:bg-[#383838] rounded-full">
               <FaCog size={24}/>
@@ -65,9 +65,9 @@ export default function Dashboard() {
         </nav>
       </aside>
 
-      {/* Main content */}
+      
       <main className="flex flex-col gap-8">
-        {/* Physical Activity Section */}
+        
         <section className="flex gap-8">
           <div className="bg-[#2b2b2b] rounded-lg p-6 flex-1">
             <h2 className="text-xl mb-4">Physical Activity</h2>
@@ -87,7 +87,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Calendar Section */}
+           
           <div className="bg-[#2b2b2b] rounded-lg p-6 w-90">
             <h2 className="text-xl mb-4">Your Active Days</h2>
             <div className="grid grid-cols-7 gap-4 text-center">
@@ -106,7 +106,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* Sleep Time and Weight Loss Plan */}
+         
         <section className="flex gap-8">
           <div className="bg-[#2b2b2b] rounded-lg p-6 w-1/2">
             <h2 className="text-xl mb-4">Sleep Time</h2>
@@ -130,7 +130,7 @@ export default function Dashboard() {
           </div>
         </section>
 
-        {/* Planned Activities */}
+         
         <section className="bg-[#2b2b2b] rounded-lg p-6">
           <h2 className="text-xl mb-4">My Activities</h2>
           <button

@@ -152,7 +152,7 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Chat Section */}
+      
       <div className="chat-section">
         <h2>Chat</h2>
         <div className="chat-box">
@@ -173,15 +173,15 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Content Section */}
+     
       <div className="content-section">
-        {/* Progress Chart */}
+       
         <div className="progress-chart">
           <h2>Weekly Progress</h2>
           <Line data={chartData} />
         </div>
 
-        {/* Feed Filters */}
+        
         <div className="feed-filters">
           {["All", "Exercise", "Meal", "Achievement", "Sleep"].map((category) => (
             <motion.button
@@ -195,7 +195,7 @@ const Dashboard = () => {
           ))}
         </div>
 
-        {/* Feed Section */}
+        
         <div className="feed">
           {filteredFeed.map((item) => (
             <motion.div
