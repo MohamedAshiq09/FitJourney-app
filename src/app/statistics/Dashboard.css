@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: "Arial", sans-serif;
-    background-color: #f7f9fc;
+    background-color: #f5f7fa;
     color: #333;
   }
   
@@ -11,52 +11,74 @@ body {
     margin: auto;
   }
   
-  .header {
+  .dashboard-header {
     text-align: center;
     margin-bottom: 20px;
   }
   
-  .user-info {
-    display: flex;
-    align-items: center;
-    background-color: #fff;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  .dashboard-header h1 {
+    font-size: 2.5rem;
   }
   
-  .user-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  
-  .dashboard-cards {
-    display: flex;
-    gap: 20px;
+  .progress-chart {
     margin-bottom: 30px;
-  }
-  
-  .card {
-    flex: 1;
     padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    background: linear-gradient(120deg, #e3f2fd, #bbdefb);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
-  .card:hover {
-    transform: translateY(-5px);
+  .feed-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
   }
   
-  .chart-container {
-    background-color: #fff;
-    padding: 20px;
+  .feed-filters button {
+    padding: 10px 20px;
+    border: none;
+    background: #e3e3e3;
     border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .feed-filters button.active-filter {
+    background: #4caf50;
+    color: #fff;
+  }
+  
+  .feed-filters button:hover {
+    background: #d5d5d5;
+  }
+  
+  .feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .feed-item {
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: all 0.3s ease;
+  }
+  
+  .feed-item h3 {
+    margin: 0;
+    color: #4caf50;
+  }
+  
+  .feed-item p {
+    margin: 5px 0;
+  }
+  
+  .feed-item span {
+    font-size: 0.9rem;
+    color: #999;
   }
   

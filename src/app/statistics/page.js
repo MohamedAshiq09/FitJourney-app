@@ -102,111 +102,102 @@
 // export default Statistics;
 "use client"
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Line } from "react-chartjs-2";
 import "chart.js/auto";
-import "./Dashboard.css"; // Add your custom styles here
+import "./Dashboard.css";
 
 const Dashboard = () => {
-  // Line chart data
+  // Chart data for progress visualization
   const chartData = {
     labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
     datasets: [
       {
         label: "Exercise",
-        data: [3, 5, 2, 6],
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.4)",
-        tension: 0.5,
+        data: [5, 7, 6, 8],
+        borderColor: "#4caf50",
+        backgroundColor: "rgba(76, 175, 80, 0.2)",
+        tension: 0.4,
         fill: true,
         pointRadius: 5,
-        pointHoverRadius: 8,
-      },
-      {
-        label: "Meals",
-        data: [4, 3, 6, 7],
-        borderColor: "rgba(255, 99, 132, 1)",
-        backgroundColor: "rgba(255, 99, 132, 0.4)",
-        tension: 0.5,
-        fill: true,
-        pointRadius: 5,
-        pointHoverRadius: 8,
       },
     ],
   };
 
-  const chartOptions = {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: true,
-        position: "bottom",
-      },
-    },
-    scales: {
-      x: {
-        grid: {
-          color: "rgba(200, 200, 200, 0.2)",
-        },
-      },
-      y: {
-        beginAtZero: true,
-        grid: {
-          color: "rgba(200, 200, 200, 0.2)",
-        },
-      },
-    },
-  };
+  const [filter, setFilter] = useState("All");
 
-  // Animation for dashboard cards
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 },
-  };
+  const feedItems = [
+    { id: 1, type: "Exercise", text: "Completed 10 push-ups.", time: "2 hours ago" },
+    { id: 2, type: "Meal", text: "Had a healthy salad with chicken.", time: "5 hours ago" },
+    { id: 3, type: "Achievement", text: "Reached 7,000 steps today!", time: "1 day ago" },
+    { id: 4, type: "Sleep", text: "Slept for 8 hours.", time: "1 day ago" },
+  ];
+
+  const filteredFeed = feedItems.filter((item) =>
+    filter === "All" ? true : item.type === filter
+  );
 
   return (
     <div className="dashboard">
-      <header className="header">
-        <h1>Track Fitness</h1>
-        <p>Day 2, Week 6 | Today, 7th June 2018</p>
+      {/* Header */}
+      <header className="dashboard-header">
+        <h1>Fitness Feed</h1>
+        <p>Track your daily progress and updates.</p>
       </header>
 
-      <section className="user-info">
-        <img
-          src="https://via.placeholder.com/80"
-          alt="User"
-          className="user-avatar"
-        />
-        <div>
-          <h2>Richard Jones</h2>
-          <p>Male, 28 years</p>
-          <p>Height: 185 cm | Weight: 176 kg</p>
-        </div>
-      </section>
-
+      {/* Progress Chart */}
       <motion.div
-        className="dashboard-cards"
+        className="progress-chart"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2>Weekly Progress</h2>
+        <Line data={chartData} />
+      </motion.div>
+
+      {/* Filters */}
+      <div className="feed-filters">
+        {["All", "Exercise", "Meal", "Achievement", "Sleep"].map((category) => (
+          <motion.button
+            key={category}
+            onClick={() => setFilter(category)}
+            whileHover={{ scale: 1.1 }}
+            className={filter === category ? "active-filter" : ""}
+          >
+            {category}
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Feed Section */}
+      <motion.div
+        className="feed"
         initial="hidden"
         animate="visible"
-        transition={{ staggerChildren: 0.2 }}
+        variants={{
+          hidden: { opacity: 0, y: 50 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: { staggerChildren: 0.2 },
+          },
+        }}
       >
-        {["Exercises", "Meals", "Sleep"].map((item, index) => (
+        {filteredFeed.map((item) => (
           <motion.div
-            className={`card card-${index}`}
-            key={index}
-            variants={cardVariants}
+            className="feed-item"
+            key={item.id}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <h3>{item}</h3>
-            <p>{item === "Exercises" ? "10 Completed" : "Info Here"}</p>
+            <h3>{item.type}</h3>
+            <p>{item.text}</p>
+            <span>{item.time}</span>
           </motion.div>
         ))}
       </motion.div>
-
-      <div className="chart-container">
-        <h3>Statistics - Last Month</h3>
-        <Line data={chartData} options={chartOptions} />
-      </div>
     </div>
   );
 };
