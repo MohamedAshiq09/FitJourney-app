@@ -102,142 +102,113 @@
 // export default Statistics;
 "use client"
 
-import React from 'react';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import React from "react";
+import { motion } from "framer-motion";
+import { Line } from "react-chartjs-2";
+import "chart.js/auto";
+import "./Dashboard.css"; // Add your custom styles here
 
-// Register components for Chart.js
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+const Dashboard = () => {
+  // Line chart data
+  const chartData = {
+    labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+    datasets: [
+      {
+        label: "Exercise",
+        data: [3, 5, 2, 6],
+        borderColor: "rgba(75, 192, 192, 1)",
+        backgroundColor: "rgba(75, 192, 192, 0.4)",
+        tension: 0.5,
+        fill: true,
+        pointRadius: 5,
+        pointHoverRadius: 8,
+      },
+      {
+        label: "Meals",
+        data: [4, 3, 6, 7],
+        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(255, 99, 132, 0.4)",
+        tension: 0.5,
+        fill: true,
+        pointRadius: 5,
+        pointHoverRadius: 8,
+      },
+    ],
+  };
 
-// Chart data
-const data = {
-  labels: ['Steps', 'Calories', 'Distance', 'Workouts', 'Sleep'],
-  datasets: [
-    {
-      label: 'Daily Stats',
-      data: [5000, 350, 7.5, 3, 8],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.6)',
-        'rgba(54, 162, 235, 0.6)',
-        'rgba(255, 206, 86, 0.6)',
-        'rgba(75, 192, 192, 0.6)',
-        'rgba(153, 102, 255, 0.6)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-      ],
-      borderWidth: 2,
-      hoverBackgroundColor: 'rgba(255, 255, 255, 0.8)', // Change color on hover
-      hoverBorderColor: 'rgba(0, 0, 0, 1)',
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+      },
     },
-  ],
-};
-
-// Chart options
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      display: true,
-      position: 'top',
-      labels: {
-        font: {
-          size: 14,
-          family: 'Arial',
+    scales: {
+      x: {
+        grid: {
+          color: "rgba(200, 200, 200, 0.2)",
         },
-        color: '#333',
-        boxWidth: 20,
       },
-    },
-    title: {
-      display: true,
-      text: 'Activity Tracker - Daily Statistics',
-      font: {
-        size: 18,
-        weight: 'bold',
-        family: 'Arial',
-      },
-      color: '#111',
-    },
-    tooltip: {
-      enabled: true,
-      backgroundColor: 'rgba(0,0,0,0.8)',
-      titleColor: '#fff',
-      bodyColor: '#eee',
-      borderColor: '#fff',
-      borderWidth: 1,
-    },
-  },
-  animation: {
-    duration: 2000, // Animation duration in ms
-    easing: 'easeOutBounce', // Smooth bounce effect
-  },
-  scales: {
-    x: {
-      grid: {
-        color: 'rgba(200, 200, 200, 0.2)',
-        borderDash: [5, 5],
-      },
-      ticks: {
-        color: '#666',
-        font: {
-          size: 12,
-          family: 'Arial',
+      y: {
+        beginAtZero: true,
+        grid: {
+          color: "rgba(200, 200, 200, 0.2)",
         },
       },
     },
-    y: {
-      beginAtZero: true,
-      grid: {
-        color: 'rgba(200, 200, 200, 0.2)',
-        borderDash: [5, 5],
-      },
-      ticks: {
-        color: '#666',
-        font: {
-          size: 12,
-          family: 'Arial',
-        },
-        callback: function (value) {
-          return value + ' units'; // Add 'units' to y-axis ticks
-        },
-      },
-    },
-  },
-  hover: {
-    mode: 'nearest',
-    intersect: true,
-  },
-};
+  };
 
-// Component
-const BarChart = () => {
+  // Animation for dashboard cards
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div
-      style={{
-        width: '90%',
-        margin: '20px auto',
-        padding: '20px',
-        backgroundColor: '#f9f9f9',
-        borderRadius: '15px',
-        boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
-      }}
-    >
-      <Bar data={data} options={options} />
+    <div className="dashboard">
+      <header className="header">
+        <h1>Track Fitness</h1>
+        <p>Day 2, Week 6 | Today, 7th June 2018</p>
+      </header>
+
+      <section className="user-info">
+        <img
+          src="https://via.placeholder.com/80"
+          alt="User"
+          className="user-avatar"
+        />
+        <div>
+          <h2>Richard Jones</h2>
+          <p>Male, 28 years</p>
+          <p>Height: 185 cm | Weight: 176 kg</p>
+        </div>
+      </section>
+
+      <motion.div
+        className="dashboard-cards"
+        initial="hidden"
+        animate="visible"
+        transition={{ staggerChildren: 0.2 }}
+      >
+        {["Exercises", "Meals", "Sleep"].map((item, index) => (
+          <motion.div
+            className={`card card-${index}`}
+            key={index}
+            variants={cardVariants}
+          >
+            <h3>{item}</h3>
+            <p>{item === "Exercises" ? "10 Completed" : "Info Here"}</p>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <div className="chart-container">
+        <h3>Statistics - Last Month</h3>
+        <Line data={chartData} options={chartOptions} />
+      </div>
     </div>
   );
 };
 
-export default BarChart;
+export default Dashboard;
