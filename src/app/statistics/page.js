@@ -109,7 +109,12 @@ import "chart.js/auto";
 import "./Dashboard.css";
 
 const Dashboard = () => {
-  // Chart data for progress visualization
+  const [messages, setMessages] = useState([
+    { id: 1, text: "Great job on your workout!", sender: "Bot" },
+    { id: 2, text: "Thanks! Feeling good today.", sender: "User" },
+  ]);
+  const [newMessage, setNewMessage] = useState("");
+
   const chartData = {
     labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
     datasets: [
@@ -138,66 +143,97 @@ const Dashboard = () => {
     filter === "All" ? true : item.type === filter
   );
 
+  const handleSend = () => {
+    if (newMessage.trim()) {
+      setMessages([...messages, { id: messages.length + 1, text: newMessage, sender: "User" }]);
+      setNewMessage("");
+    }
+  };
+
   return (
-    <div className="dashboard">
-      {/* Header */}
-      <header className="dashboard-header">
-        <h1>Fitness Feed</h1>
-        <p>Track your daily progress and updates.</p>
-      </header>
-
-      {/* Progress Chart */}
-      <motion.div
-        className="progress-chart"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2>Weekly Progress</h2>
-        <Line data={chartData} />
-      </motion.div>
-
-      {/* Filters */}
-      <div className="feed-filters">
-        {["All", "Exercise", "Meal", "Achievement", "Sleep"].map((category) => (
-          <motion.button
-            key={category}
-            onClick={() => setFilter(category)}
-            whileHover={{ scale: 1.1 }}
-            className={filter === category ? "active-filter" : ""}
-          >
-            {category}
-          </motion.button>
-        ))}
+    <div className="dashboard-grid">
+      {/* Left Chat Section */}
+      <div className="chat-section">
+        <h2>Chat</h2>
+        <div className="chat-box">
+          {messages.map((msg) => (
+            <div key={msg.id} className={`chat-message ${msg.sender.toLowerCase()}`}>
+              {msg.text}
+            </div>
+          ))}
+        </div>
+        <div className="chat-input">
+          <input
+            type="text"
+            value={newMessage}
+            onChange={(e) => setNewMessage(e.target.value)}
+            placeholder="Type a message..."
+          />
+          <button onClick={handleSend}>Send</button>
+        </div>
       </div>
 
-      {/* Feed Section */}
-      <motion.div
-        className="feed"
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { staggerChildren: 0.2 },
-          },
-        }}
-      >
-        {filteredFeed.map((item) => (
-          <motion.div
-            className="feed-item"
-            key={item.id}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            <h3>{item.type}</h3>
-            <p>{item.text}</p>
-            <span>{item.time}</span>
-          </motion.div>
-        ))}
-      </motion.div>
+      {/* Right Content Section */}
+      <div className="content-section">
+        {/* Header */}
+        <header className="dashboard-header">
+          <h1>Fitness Feed</h1>
+          <p>Track your daily progress and updates.</p>
+        </header>
+
+        {/* Progress Chart */}
+        <motion.div
+          className="progress-chart"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2>Weekly Progress</h2>
+          <Line data={chartData} />
+        </motion.div>
+
+        {/* Filters */}
+        <div className="feed-filters">
+          {["All", "Exercise", "Meal", "Achievement", "Sleep"].map((category) => (
+            <motion.button
+              key={category}
+              onClick={() => setFilter(category)}
+              whileHover={{ scale: 1.1 }}
+              className={filter === category ? "active-filter" : ""}
+            >
+              {category}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Feed Section */}
+        <motion.div
+          className="feed"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, y: 50 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { staggerChildren: 0.2 },
+            },
+          }}
+        >
+          {filteredFeed.map((item) => (
+            <motion.div
+              className="feed-item"
+              key={item.id}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <h3>{item.type}</h3>
+              <p>{item.text}</p>
+              <span>{item.time}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 };

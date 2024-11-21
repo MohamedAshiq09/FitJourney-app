@@ -5,27 +5,91 @@ body {
     color: #333;
   }
   
-  .dashboard {
+  /* Grid Layout */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 20px;
     padding: 20px;
-    max-width: 1200px;
-    margin: auto;
+  }
+  
+  /* Chat Section */
+  .chat-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .chat-section h2 {
+    margin: 0 0 10px;
+  }
+  
+  .chat-box {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .chat-message {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  
+  .chat-message.bot {
+    background: #e0f7fa;
+    align-self: flex-start;
+  }
+  
+  .chat-message.user {
+    background: #d1c4e9;
+    align-self: flex-end;
+  }
+  
+  .chat-input {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .chat-input button {
+    padding: 10px 15px;
+    border: none;
+    background: #4caf50;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .chat-input button:hover {
+    background: #45a049;
+  }
+  
+  /* Content Section */
+  .content-section {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
   .dashboard-header {
     text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .dashboard-header h1 {
-    font-size: 2.5rem;
   }
   
   .progress-chart {
     margin-bottom: 30px;
-    padding: 20px;
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   }
   
   .feed-filters {
@@ -35,25 +99,6 @@ body {
     margin-bottom: 20px;
   }
   
-  .feed-filters button {
-    padding: 10px 20px;
-    border: none;
-    background: #e3e3e3;
-    border-radius: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  .feed-filters button.active-filter {
-    background: #4caf50;
-    color: #fff;
-  }
-  
-  .feed-filters button:hover {
-    background: #d5d5d5;
-  }
-  
   .feed {
     display: flex;
     flex-direction: column;
@@ -61,24 +106,13 @@ body {
   }
   
   .feed-item {
-    background: #fff;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    transition: all 0.3s ease;
+    background: #f9f9f9;
+    border-radius: 10px;
+    transition: all 0.3s;
   }
   
-  .feed-item h3 {
-    margin: 0;
-    color: #4caf50;
-  }
-  
-  .feed-item p {
-    margin: 5px 0;
-  }
-  
-  .feed-item span {
-    font-size: 0.9rem;
-    color: #999;
+  .feed-item:hover {
+    background: #e0f7fa;
   }
   
