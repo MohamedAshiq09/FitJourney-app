@@ -157,7 +157,6 @@
 // }
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useActivityTracker } from "../hooks/useActivityTracker";
@@ -167,6 +166,7 @@ export default function Dashboard() {
   const { activityData, addActivity } = useActivityTracker();
   const [activeDay, setActiveDay] = useState(new Date().getDate());
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const icons = [<FaHome size={24}/>, <FaCalendarAlt size={24}/>, <FaChartLine size={24}/>, <FaCog size={24}/>];
 
   return (
     <div className="min-h-screen flex bg-[#1a1a1a] text-white font-sans">
@@ -198,12 +198,12 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main
-        className={`flex-1 p-8 pb-20 transition-[margin-left] duration-300 ${
+        className={`flex-1 p-8 transition-[margin-left] duration-300 ${
           isSidebarOpen ? "ml-64" : "ml-16"
         }`}
       >
         {/* Section 1 */}
-        <section className="flex gap-8">
+        <section className="flex flex-col lg:flex-row gap-8">
           <div className="bg-[#2b2b2b] rounded-lg p-6 flex-1">
             <h2 className="text-xl mb-4">Physical Activity</h2>
             <div className="flex justify-between">
@@ -222,7 +222,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="bg-[#2b2b2b] rounded-lg p-6 w-90">
+          <div className="bg-[#2b2b2b] rounded-lg p-6 flex-1">
             <h2 className="text-xl mb-4">Your Active Days</h2>
             <div className="grid grid-cols-7 gap-4 text-center">
               {Array.from({ length: 30 }, (_, i) => (
@@ -241,15 +241,16 @@ export default function Dashboard() {
         </section>
 
         {/* Section 2 */}
-        <section className="flex gap-8">
-          <div className="bg-[#2b2b2b] rounded-lg p-6 w-1/2">
+        <section className="flex flex-col lg:flex-row gap-8 mt-8">
+          <div className="bg-[#2b2b2b] rounded-lg p-6 flex-1">
             <h2 className="text-xl mb-4">Sleep Time</h2>
             <p>You're almost there</p>
-            <div className="relative w-24 h-24 mt-4 rounded-full border-4 border-green-500 flex items-center justify-center">
+            <div className="relative w-24 h-24 mt-4 rounded-full border-4 border-green-500 flex items-center justify-center mx-auto">
               <span className="text-xl">7.45h</span>
             </div>
           </div>
-          <div className="bg-[#2b2b2b] rounded-lg p-6 w-1/2">
+
+          <div className="bg-[#2b2b2b] rounded-lg p-6 flex-1">
             <h2 className="text-xl mb-4">Weight Loss Plan</h2>
             <p>80% completed</p>
             <div className="w-full bg-[#383838] rounded-full h-4 mt-4">
@@ -258,14 +259,15 @@ export default function Dashboard() {
                 style={{ width: "80%" }}
               ></div>
             </div>
-            <p className="mt-2">
-              80kg <span className="float-right">70kg</span>
+            <p className="mt-2 flex justify-between">
+              <span>80kg</span>
+              <span>70kg</span>
             </p>
           </div>
         </section>
 
         {/* Section 3 */}
-        <section className="bg-[#2b2b2b] rounded-lg p-6">
+        <section className="bg-[#2b2b2b] rounded-lg p-6 mt-8">
           <h2 className="text-xl mb-4">My Activities</h2>
           <button
             onClick={() => addActivity("Running", 30)}
